@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4101F5061ABC688000CC31DD /* ZTRecordingFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4101F5051ABC688000CC31DD /* ZTRecordingFrameView.m */; };
+		410BB4791AC03B8200C05BDD /* AudioSessionRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 410BB4781AC03B8200C05BDD /* AudioSessionRouter.m */; };
+		410BB47B1AC03BA300C05BDD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410BB47A1AC03BA300C05BDD /* AudioToolbox.framework */; };
+		411126361ABB7A2200F3D290 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411126351ABB7A2200F3D290 /* AVFoundation.framework */; };
+		411126381ABB7A2600F3D290 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411126371ABB7A2600F3D290 /* AssetsLibrary.framework */; };
 		41F7FF5A1ABB10A700CA7390 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7FF591ABB10A700CA7390 /* main.m */; };
 		41F7FF5D1ABB10A700CA7390 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7FF5C1ABB10A700CA7390 /* AppDelegate.m */; };
 		41F7FF601ABB10A700CA7390 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7FF5F1ABB10A700CA7390 /* ViewController.m */; };
@@ -14,6 +19,9 @@
 		41F7FF651ABB10A700CA7390 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41F7FF641ABB10A700CA7390 /* Images.xcassets */; };
 		41F7FF681ABB10A700CA7390 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F7FF661ABB10A700CA7390 /* LaunchScreen.xib */; };
 		41F7FF741ABB10A700CA7390 /* ZazoTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7FF731ABB10A700CA7390 /* ZazoTestTests.m */; };
+		41F7FF811ABB146F00CA7390 /* ZTVideoRecorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7FF801ABB146F00CA7390 /* ZTVideoRecorderView.m */; };
+		41F7FF841ABB14C000CA7390 /* ZTCameraPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7FF831ABB14C000CA7390 /* ZTCameraPreviewView.m */; };
+		41F7FF881ABB189C00CA7390 /* ZTVideoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7FF871ABB189C00CA7390 /* ZTVideoUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +35,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4101F5041ABC688000CC31DD /* ZTRecordingFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTRecordingFrameView.h; sourceTree = "<group>"; };
+		4101F5051ABC688000CC31DD /* ZTRecordingFrameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTRecordingFrameView.m; sourceTree = "<group>"; };
+		410BB4771AC03B8200C05BDD /* AudioSessionRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSessionRouter.h; sourceTree = "<group>"; };
+		410BB4781AC03B8200C05BDD /* AudioSessionRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSessionRouter.m; sourceTree = "<group>"; };
+		410BB47A1AC03BA300C05BDD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		411126351ABB7A2200F3D290 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		411126371ABB7A2600F3D290 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		41F7FF541ABB10A700CA7390 /* ZazoTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZazoTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41F7FF581ABB10A700CA7390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41F7FF591ABB10A700CA7390 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +55,12 @@
 		41F7FF6D1ABB10A700CA7390 /* ZazoTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZazoTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41F7FF721ABB10A700CA7390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41F7FF731ABB10A700CA7390 /* ZazoTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZazoTestTests.m; sourceTree = "<group>"; };
+		41F7FF7F1ABB146F00CA7390 /* ZTVideoRecorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTVideoRecorderView.h; sourceTree = "<group>"; };
+		41F7FF801ABB146F00CA7390 /* ZTVideoRecorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTVideoRecorderView.m; sourceTree = "<group>"; };
+		41F7FF821ABB14C000CA7390 /* ZTCameraPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTCameraPreviewView.h; sourceTree = "<group>"; };
+		41F7FF831ABB14C000CA7390 /* ZTCameraPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTCameraPreviewView.m; sourceTree = "<group>"; };
+		41F7FF861ABB189C00CA7390 /* ZTVideoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTVideoUtils.h; sourceTree = "<group>"; };
+		41F7FF871ABB189C00CA7390 /* ZTVideoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTVideoUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +68,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				410BB47B1AC03BA300C05BDD /* AudioToolbox.framework in Frameworks */,
+				411126381ABB7A2600F3D290 /* AssetsLibrary.framework in Frameworks */,
+				411126361ABB7A2200F3D290 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +87,9 @@
 		41F7FF4B1ABB10A700CA7390 = {
 			isa = PBXGroup;
 			children = (
+				410BB47A1AC03BA300C05BDD /* AudioToolbox.framework */,
+				411126371ABB7A2600F3D290 /* AssetsLibrary.framework */,
+				411126351ABB7A2200F3D290 /* AVFoundation.framework */,
 				41F7FF561ABB10A700CA7390 /* ZazoTest */,
 				41F7FF701ABB10A700CA7390 /* ZazoTestTests */,
 				41F7FF551ABB10A700CA7390 /* Products */,
@@ -81,6 +108,9 @@
 		41F7FF561ABB10A700CA7390 /* ZazoTest */ = {
 			isa = PBXGroup;
 			children = (
+				41F7FF851ABB187700CA7390 /* Utils */,
+				41F7FF7E1ABB126F00CA7390 /* VideoRecorderView */,
+				41F7FF7D1ABB125C00CA7390 /* CameraPreviewView */,
 				41F7FF5B1ABB10A700CA7390 /* AppDelegate.h */,
 				41F7FF5C1ABB10A700CA7390 /* AppDelegate.m */,
 				41F7FF5E1ABB10A700CA7390 /* ViewController.h */,
@@ -117,6 +147,37 @@
 				41F7FF721ABB10A700CA7390 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		41F7FF7D1ABB125C00CA7390 /* CameraPreviewView */ = {
+			isa = PBXGroup;
+			children = (
+				41F7FF821ABB14C000CA7390 /* ZTCameraPreviewView.h */,
+				41F7FF831ABB14C000CA7390 /* ZTCameraPreviewView.m */,
+				4101F5041ABC688000CC31DD /* ZTRecordingFrameView.h */,
+				4101F5051ABC688000CC31DD /* ZTRecordingFrameView.m */,
+			);
+			path = CameraPreviewView;
+			sourceTree = "<group>";
+		};
+		41F7FF7E1ABB126F00CA7390 /* VideoRecorderView */ = {
+			isa = PBXGroup;
+			children = (
+				41F7FF7F1ABB146F00CA7390 /* ZTVideoRecorderView.h */,
+				41F7FF801ABB146F00CA7390 /* ZTVideoRecorderView.m */,
+			);
+			path = VideoRecorderView;
+			sourceTree = "<group>";
+		};
+		41F7FF851ABB187700CA7390 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				41F7FF861ABB189C00CA7390 /* ZTVideoUtils.h */,
+				41F7FF871ABB189C00CA7390 /* ZTVideoUtils.m */,
+				410BB4771AC03B8200C05BDD /* AudioSessionRouter.h */,
+				410BB4781AC03B8200C05BDD /* AudioSessionRouter.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,7 +281,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				41F7FF601ABB10A700CA7390 /* ViewController.m in Sources */,
+				4101F5061ABC688000CC31DD /* ZTRecordingFrameView.m in Sources */,
+				41F7FF881ABB189C00CA7390 /* ZTVideoUtils.m in Sources */,
 				41F7FF5D1ABB10A700CA7390 /* AppDelegate.m in Sources */,
+				41F7FF811ABB146F00CA7390 /* ZTVideoRecorderView.m in Sources */,
+				41F7FF841ABB14C000CA7390 /* ZTCameraPreviewView.m in Sources */,
+				410BB4791AC03B8200C05BDD /* AudioSessionRouter.m in Sources */,
 				41F7FF5A1ABB10A700CA7390 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,8 +412,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ZazoTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -356,8 +424,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ZazoTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -414,6 +484,7 @@
 				41F7FF791ABB10A700CA7390 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		41F7FF7A1ABB10A700CA7390 /* Build configuration list for PBXNativeTarget "ZazoTestTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +493,7 @@
 				41F7FF7C1ABB10A700CA7390 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

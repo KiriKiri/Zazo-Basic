@@ -2,12 +2,12 @@
 //  AppDelegate.m
 //  ZazoTest
 //
-//  Created by Kirill Kirikov on 19.03.15.
+//  Created by Kirill Kirikov on 23.03.15.
 //  Copyright (c) 2015 Seductive LLC. All rights reserved.
 //
 
 #import "AppDelegate.h"
-
+#import "AudioSessionRouter.h"
 @interface AppDelegate ()
 
 @end
@@ -16,7 +16,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [AudioSessionRouter sharedInstance];
     return YES;
 }
 

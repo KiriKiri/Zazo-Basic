@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ZTCameraPreviewView.h
 //  ZazoTest
 //
 //  Created by Kirill Kirikov on 23.03.15.
@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@class AVCaptureSession;
 
-@property (strong, nonatomic) UIWindow *window;
-
-
+@interface ZTCameraPreviewView : UIView
+@property (nonatomic) AVCaptureSession *session;
 @end
-

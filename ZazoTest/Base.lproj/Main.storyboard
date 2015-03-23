@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,8 +16,59 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1j-jq-Cr6" customClass="ZTCameraPreviewView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qaD-VF-gHS" customClass="ZTRecordingFrameView">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="REC: 00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NL0-82-iAP">
+                                                <rect key="frame" x="15" y="15" width="127" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.792156862745098" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
+                                        <connections>
+                                            <outlet property="timeLabel" destination="NL0-82-iAP" id="Zh3-2S-5JR"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.58039215690000001" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="qaD-VF-gHS" firstAttribute="leading" secondItem="i1j-jq-Cr6" secondAttribute="leading" id="PA0-1P-t0t"/>
+                                    <constraint firstAttribute="bottom" secondItem="qaD-VF-gHS" secondAttribute="bottom" id="SsA-ta-9N7"/>
+                                    <constraint firstItem="qaD-VF-gHS" firstAttribute="top" secondItem="i1j-jq-Cr6" secondAttribute="top" id="dMd-ts-vLR"/>
+                                    <constraint firstAttribute="trailing" secondItem="qaD-VF-gHS" secondAttribute="trailing" id="zlc-6X-rci"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ymE-Hh-Rge" customClass="ZTVideoRecorderView">
+                                <rect key="frame" x="0.0" y="300" width="600" height="300"/>
+                                <color key="backgroundColor" red="0.85098039219999999" green="0.95686274510000002" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ymE-Hh-Rge" secondAttribute="trailing" id="3EI-8T-T6w"/>
+                            <constraint firstItem="ymE-Hh-Rge" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Q4f-30-nOG"/>
+                            <constraint firstAttribute="trailing" secondItem="i1j-jq-Cr6" secondAttribute="trailing" id="SM7-pU-U0s"/>
+                            <constraint firstItem="ymE-Hh-Rge" firstAttribute="height" secondItem="i1j-jq-Cr6" secondAttribute="height" id="Wej-zw-tSy"/>
+                            <constraint firstAttribute="bottom" secondItem="ymE-Hh-Rge" secondAttribute="bottom" id="e8u-bL-J1x"/>
+                            <constraint firstItem="ymE-Hh-Rge" firstAttribute="top" secondItem="i1j-jq-Cr6" secondAttribute="bottom" id="gFV-wg-nXZ"/>
+                            <constraint firstItem="i1j-jq-Cr6" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qbI-Yi-AeA"/>
+                            <constraint firstItem="i1j-jq-Cr6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xeR-Qj-fy6"/>
+                        </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="previewView" destination="i1j-jq-Cr6" id="xEl-pl-8xL"/>
+                        <outlet property="recordingFrameView" destination="qaD-VF-gHS" id="Jq6-K0-Q6O"/>
+                        <outlet property="videoRecorderView" destination="ymE-Hh-Rge" id="re8-HV-INg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
