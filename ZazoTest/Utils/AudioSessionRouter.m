@@ -31,7 +31,7 @@
     self = [super init];
     if (self) {
         [self initAudioSessionRouting];
-        [self initProximityMonitoring];
+        [self subscribeToNotifications];
     }
     
     return self;
@@ -41,8 +41,9 @@
 {
     NSError *error;
     self.session = [AVAudioSession sharedInstance];
-    
+    [self updateAudioSessionParams];
     BOOL success = [self.session setActive:YES error:&error];
+    
     if (success) {
         NSLog(@"AudioSession is set to active");
     }
@@ -50,60 +51,108 @@
     NSLog(@"Default mode is: %@", self.session.mode);
 }
 
-- (void) initProximityMonitoring {
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
+- (void) subscribeToNotifications {
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveProximityChangedNotification:) name:UIDeviceProximityStateDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveAudioSessionRoutChangeNotification:) name:AVAudioSessionRouteChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveAudioSessionInterruptionNotification:) name:AVAudioSessionInterruptionNotification object:nil];
 }
 
 #pragma mark - Notifications handling
 
-- (void) didReceiveProximityChangedNotification:(NSNotification *)notification {
-    if ([UIDevice currentDevice].proximityState) {
-        [self changeRouteToReceiver];
-    } else {
-        [self changeRouteToVideoRecording];
+- (void) didReceiveAudioSessionInterruptionNotification:(NSNotification *)notification {
+    NSLog(@"didReceiveAudioSessionInterruptionNotification");
+}
+
+- (void) didReceiveAudioSessionRoutChangeNotification:(NSNotification *)notification {
+    NSLog(@"didReceiveAudioSessionRoutChangeNotification");
+    AVAudioSessionRouteChangeReason reason = [[notification.userInfo objectForKey:AVAudioSessionRouteChangeReasonKey] intValue];
+    switch (reason) {
+        case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
+        case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
+            [self updateAudioSessionParams];
+            break;
+        case AVAudioSessionRouteChangeReasonWakeFromSleep:
+            NSLog(@"Awaking from sleep");
+            break;
+        default:
+            break;
     }
+    
+
+}
+
+- (void) didReceiveProximityChangedNotification:(NSNotification *)notification {
+    NSLog(@"didReceiveProximityChangedNotification");
+    [self updateAudioSessionParams];
 }
 
 #pragma mark - Audio managing
 
-- (void) changeRouteToReceiver {
-    NSError *error;
-    
-    BOOL success = [self.session setMode:AVAudioSessionModeVoiceChat error:&error];
-    if (success) NSLog(@"Session Mode changed to voice chat");
+- (void) setState:(AudioSessionState)state {
+    _state = state;
+    [self updateAudioSessionParams];
 }
 
-- (void) changeRouteToVideoRecording {
+- (void) updateAudioSessionParams {
     NSError *error;
-    BOOL success = [self.session setMode:AVAudioSessionModeVideoRecording error:&error];
-    if (success) NSLog(@"Session Mode changed to video recording");
-}
+    BOOL success;
+    NSString *mode;
+    NSString *category;
+    int options = AVAudioSessionCategoryOptionMixWithOthers;
+    
+    switch (self.state) {
+        case Recording:
+            //VideoChat because we need to use external BT mic (maybe)
+            mode = AVAudioSessionModeVideoChat;
+            //Record because we do recording
+            category = AVAudioSessionCategoryRecord;
+            //Allow bluetooth because we don't need bluetooth system to disconnect
+            //And maybe we can use external mic
+            options = AVAudioSessionCategoryOptionAllowBluetooth;
 
-
-#pragma mark - Tests
-/*
-- (void) overrideOutput {
-    NSError *error;
-
-    BOOL success = [self.session overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
-    if (success) {
-        NSLog(@"Overriding output is success");
+            break;
+        case Playing:
+        default:
+            if ([UIDevice currentDevice].proximityState) {
+                //Voice chat because we need to use earpiece
+                mode = AVAudioSessionModeVoiceChat;
+                //PlayAndRecord because we don't need another sounds playing in the background
+                category = AVAudioSessionCategoryPlayAndRecord;
+            } else {
+                //Video Chat because we need to play video on external BT device
+                mode = AVAudioSessionModeVideoChat;
+                //Playback not playAndRecord because we need to play music from other apps
+                category = AVAudioSessionCategoryPlayback;
+                options = AVAudioSessionCategoryOptionDefaultToSpeaker|AVAudioSessionCategoryOptionAllowBluetooth;
+            }
+            break;
     }
     
-    success = [self.session setMode:AVAudioSessionModeVoiceChat error:&error];
-    if (success) {
-        NSLog(@"Session Mode changed to voice chat");
-    }
-
-    for (id dataSource in self.session.outputDataSources) {
-        NSLog(@"Output dataSource: %@", dataSource);
+    if (![[self.session mode] isEqualToString:mode]) {
+        success = [self.session setMode:mode error:&error];
+        NSLog(@"AudioSessionRouter::updateAudioSessionParams Mode: %@. Success: %d. Error:%@", mode, success, error);
     }
     
-    for (AVAudioSessionPortDescription* port in self.session.currentRoute.outputs) {
-        NSLog(@"Output port: %@", port);
+    if (![[self.session category] isEqualToString:category]) {
+        success = [self.session setCategory:category withOptions:options error:&error];
+        NSLog(@"AudioSessionRouter::updateAudioSessionParams Category:%@ Options:%d Success: %d. Error:%@", category, options, success, error);
     }
 }
-*/
+#pragma mark - Debug
+
+- (void) printOutputDataSources {
+    NSLog(@"Current OutputDataSource: %@", [[self.session outputDataSource] description]);
+    for (AVAudioSessionDataSourceDescription *dataSource in [self.session outputDataSources]) {
+        NSLog(@"DataSource: %@", [dataSource description]);
+    }
+}
+
+- (void) printInputDataSources {
+    NSLog(@"Current InputDataSource: %@", [[self.session inputDataSource] description]);
+    for (AVAudioSessionDataSourceDescription *dataSource in [self.session inputDataSources]) {
+        NSLog(@"DataSource: %@", [dataSource description]);
+    }
+}
 
 @end

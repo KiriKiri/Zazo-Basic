@@ -29,11 +29,16 @@
     if ([self isPlaying]) {
         [self.player pause];
     }
+    
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
 }
 
 - (void) startPlayback {
     if (self.player) {
+        [[AudioSessionRouter sharedInstance] setState:Playing];
         [self.player play];
+        
+        [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
     }
 }
 
@@ -43,6 +48,7 @@
 
 - (void) seekToZeroTime {
     [self.player seekToTime:CMTimeMakeWithSeconds(0, NSEC_PER_SEC)];
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
 }
 
 #pragma mark - Observing
@@ -67,8 +73,6 @@
 
 - (void) setPlayer:(AVPlayer *)player
 {
-    [self initAudioSession];
-    
     _player = player;
     
     AVPlayerLayer *videoLayer = (AVPlayerLayer *)self.layer;
@@ -78,9 +82,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemDidPlayToEndNotification:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
 }
 
-- (void) initAudioSession {
-
-}
 
 #pragma mark - Init
 
@@ -111,6 +112,7 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.timer invalidate];
     if (self.recordingDelegate) {
         [self.recordingDelegate stopRecording];
     }

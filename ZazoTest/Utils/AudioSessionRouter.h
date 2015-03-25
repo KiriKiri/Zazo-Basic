@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
+typedef enum : NSUInteger {
+    Playing,
+    Recording
+} AudioSessionState;
+
 @interface AudioSessionRouter : NSObject
 @property (nonatomic) AVAudioSession *session;
+@property (nonatomic) AudioSessionState state;
 + (AudioSessionRouter * ) sharedInstance;
-- (void) changeRouteToReceiver;
-- (void) changeRouteToVideoRecording;
 @end

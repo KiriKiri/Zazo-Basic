@@ -11,6 +11,7 @@
 #import "ZTVideoRecorderView.h"
 #import "ZTRecordingFrameView.h"
 #import "ZTVideoUtils.h"
+#import "AudioSessionRouter.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
@@ -74,19 +75,23 @@
 #pragma mark ZTAVRecordingProtocol
 
 - (void) startRecording {
+    
     NSLog(@"startRecording");
+    
+    [[AudioSessionRouter sharedInstance] setState:Recording];
     
     NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
     
     [self createAudioInput];
     
     [[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
-    
     [self.recordingFrameView startShowingRecordingFrame];
 }
 
 - (void) stopRecording {
+    
     NSLog(@"stopRecording");
+    
     [[self movieFileOutput] stopRecording];
     [self.recordingFrameView stopShowingRecordingFrame];
 }
@@ -99,6 +104,7 @@
     
     self.videoRecorderView.playbackURL = outputFileURL;
     [self removeAudioInput];
+    
     
     /*
     // If we want to save to Assets Library
